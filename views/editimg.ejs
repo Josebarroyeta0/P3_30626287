@@ -4,19 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Imagen</title>
-    <link rel="stylesheet" href="/stylesheets/edim.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        body {
+	background-image: url("https://thumbs.dreamstime.com/z/patr%C3%B3n-transparente-de-juguetes-para-ni%C3%B1os-ilustraci%C3%B3n-vector-fondo-beb%C3%A9-y-ni%C3%B1as-dise%C3%B1o-tejido-desde-el-icono-l%C3%ADnea-232241634.jpg");
+	font-family: 'Open Sans', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
+}
+
+.form-control {
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+
+.form-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+
+.form-control i {
+	visibility: hidden;
+	position: absolute;
+	top: 40px;
+	right: 10px;
+    }
+
+    h1{
+    background-color: #98edf0;
+	border: 2px solid #7fd6d2;
+    color: #03153b;
+}
+
+div{
+    padding: 30px 40px;	
+	font-weight: 500;
+	color: #03153b;
+    border-radius: 15px;
+}
+
+    </style>
 </head>
 <body>
     <div>
         <form action="/updateimg/<%= imagenes.id %>" method="post">
-            <h1>Actualizar Imagen</h1>
-            <input type="text" name="url" id="url" value="<%= imagenes.url %>" required maxlength="200" minlength="3">
+            <div class="form-control">
+                <h1>Actualizar Imagen</h1>
+            <input type="text" name="url" id="url" value="<%= imagenes.url %>" required maxlength="200" minlength="3"> 
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>  
             <select name="destacado" id="destacado">
                 <option value="">--Seleccione--</option>
                 <option value="Si">Si</option>
                 <option value="No">NO</option>
             </select>
             <button type="submit" class="btn btn-primary">Actualizar Imagen</button>
+            </div>
         </form>
     </div>
 </body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iniciar sesión</title>
+  <style>
+    body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(#005dff, #000000)
+  }
+    .login-form {
+  background-color: #1e3768;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2979ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #00bcd4;
+}
+  </style>
+</head>
+<body>
+  <div class="login-form">
+    <form name="formulario" action="/login" method="post">
+    <h1>Administrador</h1>
+    <input type="text" name="user" id="user" maxlength="20" placeholder="Ingrese el Usuario" required>
+    <input  type="password" name="password" id="password" minlength="6" maxlength="10" placeholder="Ingrese la Contraseña" required>
+    <button>Iniciar sesión</button>
+  </form>
+  </div>
+</body>
+</html>

@@ -4,18 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
-    <link rel="stylesheet" href="/stylesheets/actualizar.css">
+    
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url("https://thumbs.dreamstime.com/z/patr%C3%B3n-transparente-de-juguetes-para-ni%C3%B1os-ilustraci%C3%B3n-vector-fondo-beb%C3%A9-y-ni%C3%B1as-dise%C3%B1o-tejido-desde-el-icono-l%C3%ADnea-232241634.jpg");
+	font-family: 'Open Sans', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
+}
+
+
+
+.form button {
+	background-color: #67f2f7;
+	border: 2px solid #67f2f7;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+	cursor: pointer;
+	transition: 0.6s;
+}
+
+.form button:hover {
+	transform: scale(0.95);
+	opacity: .8;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 15px;
+}
+
+
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(84, 212, 221);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  
+}
+h1{
+    background-color: #98edf0;
+	border: 2px solid #7fd6d2;
+    color: #03153b;
+}
+
+.form {
+	padding: 30px 40px;	
+	font-weight: 500;
+	color: #03153b;
+    border-radius: 15px;
+}
+
+.form-control {
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.form-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input {
+	border-color: #e74c3c;
+}
+
+.form-control i {
+	visibility: hidden;
+	position: absolute;
+	top: 40px;
+	right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+	color: #e74c3c;
+	visibility: visible;
+}
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-control.error small {
+	visibility: visible;
+}
+button:hover {
+  background-color: rgb(33, 177, 170);
+}
+
+
+</style>
+
 </head>
 <body>
     <div>
-        <h1>Editar Producto</h1>
+       
         <form action="/updateprd/<%= productos.id %>" method="post">
-            <input type="text" name="nombre" id="nombre" value="<%= productos.nombre %>" required maxlength="25" minlength="3">
-            <input type="number" name="codigo" id="codigo" value="<%= productos.codigo %>" required>
-            <input type="number" name="precio" id="precio" value="<%= productos.precio %>" required>
-            <input type="text" name="marca" id="marca" value="<%= productos.marca %>" required maxlength="25" minlength="4">
-            <input type="number" name="edad" id="edad" value="<%= productos.edad %>" required>
-            <input type="textarea" name="descripcion" id="descripcion" value="<%= productos.descripcion %>" maxlength="60" minlength="10">
+            <h1>Editar Producto</h1>
+            <div class="form-control">
+                <input type="text" name="nombre" id="nombre" value="<%= productos.nombre %>" required maxlength="25" minlength="3">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+           
+            <div class="form-control">
+                <input type="number" name="codigo" id="codigo" value="<%= productos.codigo %>" required>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="form-control">
+                <input type="number" name="precio" id="precio" value="<%= productos.precio %>" required>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="form-control">
+                <input type="text" name="marca" id="marca" value="<%= productos.marca %>" required maxlength="25" minlength="4">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="form-control">
+                <input type="number" name="edad" id="edad" value="<%= productos.edad %>" required>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+           
+            <div class="form-control">
+                <input type="textarea" name="descripcion" id="descripcion" value="<%= productos.descripcion %>" maxlength="200" minlength="20">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+           
+          
             <button type="submit" class="btn btn-primary">Actualizar Producto</button>
         </form>
     </div>

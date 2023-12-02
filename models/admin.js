@@ -1,20 +1,69 @@
 const db = require ('../database/conection');
 
 module.exports = {
-    obtener() {
+    //Hace el reporte de las 3 tablas (categorias, productos e imagenes)
+    obteneradmin() {
         return new Promise ((resolve, reject) =>{
-            const sql = `SELECT productos.*, categorias.nombre, imagenes.url, imagenes.destacado
-            FROM productos
-            INNER JOIN categorias
-            ON productos.categoria_id = categorias.id
-            INNER JOIN imagenes
-            ON productos.id = imagenes.producto_id`;
+            const sql = 'SELECT productos.nombre AS productoNombre, productos.precio, productos.codigo, productos.descripcion, productos.marca, productos.edad, categorias.nombre AS categoriaNombre, imagenes.url, imagenes.destacado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id INNER JOIN imagenes ON productos.id = imagenes.producto_id';
             db.all (sql, (err, resultados) =>{
                 if (err) reject (err);
-                else resolve (resultados);
+                else {
+                    console.log(JSON.stringify(resultados, null, 4));
+                    resolve (resultados)};
             });
         });
     },
+    //Busqueda usuarios por nombre
+    obtenerprdPorNombre(nombre){
+        return new Promise ((resolve, reject)=>{
+            const sql = 'SELECT productos.nombre AS productoNombre, productos.precio, productos.codigo, productos.descripcion, productos.marca, productos.edad, categorias.nombre AS categoriaNombre, imagenes.url, imagenes.destacado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id INNER JOIN imagenes ON productos.id = imagenes.producto_id WHERE productos.nombre = ?'
+            db.all(sql, [nombre], (err, resultados)=>{
+                if (err) reject(err);
+                else resolve(resultados);
+            })
+        })
+    },
+    //Busqueda usuarios por descripcion
+    obtenerprdPorDescripcion(descripcion){
+        return new Promise ((resolve, reject)=>{
+            const sql = 'SELECT productos.nombre AS productoNombre, productos.precio, productos.codigo, productos.descripcion, productos.marca, productos.edad, categorias.nombre AS categoriaNombre, imagenes.url, imagenes.destacado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id INNER JOIN imagenes ON productos.id = imagenes.producto_id WHERE productos.descripcion = ?'
+            db.all(sql, [descripcion], (err, resultados)=>{
+                if (err) reject(err);
+                else resolve(resultados);
+            })
+        })
+    },
+    //Filtrado categoria
+    filtradoctg(categoria){
+        return new Promise ((resolve, reject)=>{
+            const sql='SELECT productos.nombre AS productoNombre, productos.precio, productos.codigo, productos.descripcion, productos.marca, productos.edad, categorias.nombre AS categoriaNombre, imagenes.url, imagenes.destacado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id INNER JOIN imagenes ON productos.id = imagenes.producto_id WHERE categorias.nombre = ?'
+            db.all(sql, [categoria], (err, resultados)=>{
+                if (err) reject(err);
+                else resolve(resultados);
+            })
+        })
+    },
+    //Filtrado marca
+    filtradomarca(marca){
+        return new Promise ((resolve, reject)=>{
+            const sql='SELECT productos.nombre AS productoNombre, productos.precio, productos.codigo, productos.descripcion, productos.marca, productos.edad, categorias.nombre AS categoriaNombre, imagenes.url, imagenes.destacado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id INNER JOIN imagenes ON productos.id = imagenes.producto_id WHERE productos.marca = ?'
+            db.all(sql, [marca], (err, resultados)=>{
+                if (err) reject(err);
+                else resolve(resultados);
+            })
+        })
+    },
+    //Filtrado edad
+    filtradojgd(edad){
+        return new Promise ((resolve, reject)=>{
+            const sql='SELECT productos.nombre AS productoNombre, productos.precio, productos.codigo, productos.descripcion, productos.marca, productos.edad, categorias.nombre AS categoriaNombre, imagenes.url, imagenes.destacado FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id INNER JOIN imagenes ON productos.id = imagenes.producto_id WHERE productos.edad = ?'
+            db.all(sql, [edad], (err, resultados)=>{
+                if (err) reject(err);
+                else resolve(resultados);
+            })
+        })
+    },
+    //Obtiene solamente la tabla de categorias
     obtenerctg(){
         return new Promise ((resolve, reject) =>{
             const sql = 'Select * FROM categorias';
@@ -24,6 +73,7 @@ module.exports = {
             });
         });
     },
+    //Obtiene la tabla categorias por id
     obtenerctgPorId(id){
         return new Promise ((resolve, reject) => {
             const sql = 'SELECT * FROM categorias where id = ?'
@@ -33,6 +83,7 @@ module.exports = {
             });
         });
     },
+    //Agrega una categorias
     insertarctg(nombre){
         return new Promise ((resolve, reject) =>{
             const sql = 'INSERT INTO categorias (nombre) VALUES (?)';
@@ -42,6 +93,7 @@ module.exports = {
             });
         });
     },
+    //Actualiza una categoria
     actualizarctg(nombre, id){
         return new Promise ((resolve, reject)=>{
             const sql = 'UPDATE categorias SET nombre = ? WHERE id = ?'
@@ -51,6 +103,7 @@ module.exports = {
             });
         });
     },
+    //Elimina una categoria
     eliminarctg(id){
         return new Promise ((resolve, reject)=>{
             const sql = 'DELETE FROM categorias WHERE id = ?'
@@ -60,15 +113,19 @@ module.exports = {
             });
         });
     },
+    //Obtiene solamente la tabla productos
     obtenerprd(){
         return new Promise ((resolve, reject) =>{
             const sql = 'SELECT * from productos';
             db.all (sql, (err, resultados) =>{
                 if (err) reject(err);
-                else resolve(resultados);
+                else {
+                    console.log(JSON.stringify(resultados, null, 4));
+                    resolve(resultados)};
             });
         });
     },
+    //Obtiene la tabla productos por id
     obtenerprdPorId(id){
         return new Promise ((resolve, reject)=>{
             const sql = 'SELECT * FROM productos WHERE id = ?';
@@ -78,6 +135,7 @@ module.exports = {
             });
         });
     },
+    //Agrega un nuevo producto
     insertarprd(nombre, precio, codigo, descripcion, marca, edad, categoria_id){
         return new Promise ((resolve, reject) =>{
             const sql = 'INSERT INTO productos (nombre, precio, codigo, descripcion, marca, edad, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
@@ -87,6 +145,7 @@ module.exports = {
             });
         });
     },
+    //Actualiza un producto
     actualizarprd(nombre, precio, codigo, descripcion, marca, edad, id){
         return new Promise ((resolve, reject)=>{
             const sql = 'UPDATE productos SET nombre = ?, precio = ?, codigo = ?, descripcion = ?, marca = ?, edad = ? WHERE id = ?';
@@ -96,6 +155,7 @@ module.exports = {
             });
         });
     },
+    //Elimina un producto
     eliminarprd(id){
         return new Promise ((resolve, reject)=>{
             const sql = 'DELETE FROM productos WHERE id = ?';
@@ -105,6 +165,7 @@ module.exports = {
             });
         });        
     },
+    //Obtiene solamente la tabla imagenes
     obtenerimg(){
         return new Promise ((resolve, reject) =>{
             const sql = 'SELECT * FROM imagenes';
@@ -114,6 +175,7 @@ module.exports = {
             });
         });
     },
+    //Obtiene la tabla imagenes por id
     obtenerimgPorId(id){
         return new Promise ((resolve, reject)=>{
             const sql = 'SELECT * FROM imagenes WHERE id = ?';
@@ -123,15 +185,19 @@ module.exports = {
             });
         });
     },
+    //Agrega una nueva imagen
     insertarimg(url, destacado, producto_id){
         return new Promise ((resolve, reject)=>{
             const sql = 'INSERT INTO imagenes (url, destacado, producto_id) VALUES (?, ?, ?)';
             db.run (sql, [url, destacado, producto_id], (err, resultados) =>{
                 if (err) reject(err);
-                else resolve(resultados);
+                else {
+                    console.log(JSON.stringify(resultados, null, 4));
+                    resolve(resultados)};
             });
         });
     },
+    //Actualiza una imagen
     actualzarimg(url, destacado, id){
         return new Promise ((resolve, reject)=>{
             const sql = 'UPDATE imagenes SET url = ?, destacado = ? WHERE id = ?';
@@ -141,6 +207,7 @@ module.exports = {
             });
         });
     },
+    //Borra una imagen
     eliminarimg(id){
         return new Promise ((resolve, reject)=>{
             const sql = 'DELETE FROM imagenes WHERE id = ?';
