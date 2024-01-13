@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina de inicio</title>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-body {
-margin: 0px;
-  background-image: url("https://i.ibb.co/xg4RSwf/Picsart-24-01-12-15-20-44-420.jpg")
-}
+     body{
+      background-image: url(https://i.ibb.co/xg4RSwf/Picsart-24-01-12-15-20-44-420.jpg);
+     }
 
-.op {
+      .op {
   display: flex;
   align-items: center;
-  background-color: #292626;
+  background-color: #24262b;
   margin: auto;
   padding: 20px;
   border: 2px solid #000;
@@ -23,67 +22,72 @@ margin: 0px;
 .op h1 {
   margin-bottom: 20px;
   color: white;
+  font-family: 'Times New Roman', Times, serif;
 }
+
 
 .op a {
   display: inline-block;
   padding: 10px 20px;
   margin: 5px;
-  text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
-  border: 2px solid #007bff;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
+
 }
 
-.op a:hover {
-  background-color: #0056b3;
-}
+@media screen and (max-width: 332px) {
+        h1 {
+          color: #fff;
+          font-family: 'Times New Roman', Times, serif;
+          margin-left: -20px;
+        }
+        
+        }
 
-@media (max-width: 768px) {
-  .op {
-    width: 90%;
-    padding: 10px;
-    text-align: left;
-    max-width: none;
-  }
-}
+
+        @media screen and (max-width: 332px) {
+          body {
+            background-image: url("https://thumbs.dreamstime.com/z/patr%C3%B3n-transparente-de-juguetes-para-ni%C3%B1os-ilustraci%C3%B3n-vector-fondo-beb%C3%A9-y-ni%C3%B1as-dise%C3%B1o-tejido-desde-el-icono-l%C3%ADnea-232241634.jpg")
+        }
+        }
+
+        @media screen and (max-width: 940px) {
+          body {
+            background-image: url("https://thumbs.dreamstime.com/z/patr%C3%B3n-transparente-de-juguetes-para-ni%C3%B1os-ilustraci%C3%B3n-vector-fondo-beb%C3%A9-y-ni%C3%B1as-dise%C3%B1o-tejido-desde-el-icono-l%C3%ADnea-232241634.jpg")
+        }
+        }
+        
+
+
+
 
     </style>
 </head>
 <body>
     <div class="op">
-        <h1>Pagina de Inicio de redireccion</h1>
-        <a href="/clientes">Pagina Clientes</a>
-        <a href="/admin">Pagina Administrador</a>
+        <h1 class="text-center">Pagina de Inicio de redireccion</h1>
+        <div class="d-flex justify-content-center">
+            <div class="btn-group">
+                <a href="/clientes" class="btn btn-primary">Pagina Clientes</a>
+                <a href="/admin" class="btn btn-primary">Pagina Administrador</a>
+            </div>
+        </div>
     </div>
-    
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const btnGroup = document.querySelector('.btn-group');
 
-<script>
-    document.querySelectorAll('a').forEach(link => {
-  link.style.display = 'inline-block';
-  link.style.padding = '10px 20px';
-  link.style.margin = '10px';
-  link.style.textDecoration = 'none';
-  link.style.color = '#fff';
-  link.style.backgroundColor = '#007bff';
-  link.style.border = '2px solid #007bff';
-  link.style.borderRadius = '5px';
-  link.style.transition = 'background-color 0.3s, color 0.3s';
+        function toggleButtonGroup() {
+            if (window.innerWidth <= 332) {
+                btnGroup.classList.add('btn-group-vertical');
+            } else {
+                btnGroup.classList.remove('btn-group-vertical');
+            }
+        }
 
-  link.addEventListener('mouseover', () => {
-    link.style.backgroundColor = '#0056b3';
-    link.style.color = '#fff';
-  });
-
-  link.addEventListener('mouseout', () => {
-    link.style.backgroundColor = '#007bff';
-    link.style.color = '#fff';
-  });
-});
-</script>
-
+        window.addEventListener('load', toggleButtonGroup);
+        window.addEventListener('resize', toggleButtonGroup);
+    </script>
 </body>
 </html>
