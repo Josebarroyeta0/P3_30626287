@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>Registro Clientes</title>
+
+
+    <style>
+        
+body {
+	background-image: url("https://thumbs.dreamstime.com/z/patr%C3%B3n-transparente-de-juguetes-para-ni%C3%B1os-ilustraci%C3%B3n-vector-fondo-beb%C3%A9-y-ni%C3%B1as-dise%C3%B1o-tejido-desde-el-icono-l%C3%ADnea-232241634.jpg");
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
+}
+div.regis{
+font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+}
+h1{
+    background-color: #98edf0;
+	border: 2px solid #7fd6d2;
+}
+
+input.btn-primary{
+width:500px;
+}
+
+    </style>
+</head>
+<body>
+    <form action="/register" method="post">
+        <div class="regis">
+            <div>
+                <h1>Rellena los siguientes datos.</h1>
+                <label for="email">Ingrese el correo</label>
+                <input type="email" name="email" id="email" maxlength="30" minlength="8" placeholder="Ingrese su correo electronico" required>
+            </div>
+            <div>
+                <label for="password">Ingrese su contraseña</label>
+                <input type="password" name="password1" id="password1" maxlength="16" minlength="8" placeholder="Ingrese su contraseña" required>
+            </div>
+            <div>
+                <label for="password2">Confirme su contraseña</label>
+                <input type="password" name="password2" id="password2" maxlength="16" minlength="8" placeholder="Confirme su contraseña" required>
+            </div>
+            <div>
+                <label for="preg_seg">Ingrese su pregunta de seguridad</label>
+                <input type="text" name="preg_seg" id="preg_seg" maxlength="16" minlength="6" placeholder="Ingrese su pregunta de seguridad" required>
+            </div>            
+            <div>
+                <label for="resp_seg">Ingrese su respuseta de seguiridad</label>
+                <input type="text" name="resp_seg" id="resp_seg" maxlength="8" minlength="4" placeholder="Ingrese su respuesta de seguridad" required>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6LdoOU8pAAAAALddP8yijIWjUlKuRjKA9B3sM3kW"></div>
+            <br/>
+            <input class="btn btn-primary" type="submit" value="Registrate">
+            
+        </div>
+    </form>
+
+
+</body>
+</html>
