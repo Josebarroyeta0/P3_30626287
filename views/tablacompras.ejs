@@ -4,24 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Reporte</title>
+    <title>Facturas</title>
 
-    <link rel="stylesheet" href="/stylesheets/admin.css">
+    <link rel="stylesheet" href="/public/stylesheets/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-
     <style>
 
-        
-header{
-    margin-bottom: 50px;
-}
-
-        body {
-          
+        body{
             background-image: url("https://thumbs.dreamstime.com/z/patr%C3%B3n-transparente-de-juguetes-para-ni%C3%B1os-ilustraci%C3%B3n-vector-fondo-beb%C3%A9-y-ni%C3%B1as-dise%C3%B1o-tejido-desde-el-icono-l%C3%ADnea-232241634.jpg");
         }
+
+        .titulo h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th,
+        tr {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            display: flexbox;
+            justify-content: center;
+            color: white;
+            background-color: #160d18;
+        }
+
+        td {
+
+            text-align: left;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: left;
+            padding: 8px;
+            color: white;
+        }
+
 
         h1 {
             color: white;
@@ -41,11 +68,10 @@ header{
             cursor: pointer;
         }
 
-
-
         .return-button:hover {
             background-color: #025351;
         }
+
     </style>
 </head>
 
@@ -55,12 +81,16 @@ header{
         <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
 
             <div>
-                <h1>Pagina Reporte</h1>
+                <h1>Compras</h1>
             </div>
 
-        
+
             <div class="container-fluid">
-               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav nav justify-content-center">
                         <li class="nav-item">
@@ -76,7 +106,7 @@ header{
                             <a class="nav-link btn btn-outline-primary" href="/imagenes">Imagenes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-primary" href="/tablaclientes">Clientes</a>
+                            <a class="nav-link btn btn-outline-primary" href="/tablaclientes">clientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-primary" href="/tablacompras">Facturas</a>
@@ -89,97 +119,93 @@ header{
         </nav>
     </header>
 
-<div class="container">    
+<div class="container">
     <div class="table-responsive">
-            <table border="2" class="table table-hover table-dark table-striped" >
-                <!-- <caption><h1>Reporte General</h1></caption> -->
+        <div class="titulo">
+            <h1>Pagina Facturas</h1>
+        </div>
+            <table border="2px" class="table table-hover table-dark table-striped">
+                <!-- <caption>Productos</caption> -->
                 <tr>
                     <th>
                         <p>N°</p>
                     </th>
                     <th>
-                        <p>Codigo</p>
+                        <p>Producto</p>
                     </th>
                     <th>
-                        <p>Nombre</p>
+                        <p>Referencia</p>
                     </th>
                     <th>
-                        <p>Precio</p>
+                        <p>Cantidad</p>
                     </th>
                     <th>
-                        <p>Marca</p>
+                        <p>Total Pagado</p>
                     </th>
                     <th>
-                        <p>edad</p>
+                        <p>Moneda</p>
                     </th>
                     <th>
-                        <p>Descripcion</p>
+                        <p>N° de Transacción</p>
                     </th>
                     <th>
-                        <p>Categoria</p>
+                        <p>Fecha</p>
                     </th>
                     <th>
-                        <p>Imagen</p>
+                        <p>Cliente</p>
                     </th>
                     <th>
-                        <p>Destacado</p>
-                    </th>
-                    <th>
-                        <p>Calificacion</p>
+                        <p>Direccion IP</p>
                     </th>
                 </tr>
                 <tr>
-                    <% if (datos) { %>
-                        <% for (let i=0; i < datos.length; i++){ %>
+                    <% if (facturas) { %>
+                        <% for (let i=0; i < facturas.length; i++){ %>
+                            <% if (facturas) { %>
                 <tr>
                     <td>
                         <%= (i + 1) %>
                     </td>
                     <td>
-                        <%= datos[i].codigo %>
+                        <%= facturas[i].nombre %>
                     </td>
                     <td>
-                        <%= datos[i].productoNombre %>
+                        <%= facturas[i].referencia %>
                     </td>
                     <td>
-                        <%= datos[i].precio %>
+                        <%= facturas[i].cantidad %>
                     </td>
                     <td>
-                        <%= datos[i].marca %>
+                        <%= facturas[i].total_pagado %>
                     </td>
                     <td>
-                        <%= datos[i].edad %>
+                        <%= facturas[i].nomenclatura %>
                     </td>
                     <td>
-                        <%= datos[i].descripcion %>
+                        <%= facturas[i].transaccion_id %>
                     </td>
                     <td>
-                        <%= datos[i].categoriaNombre %>
-                    </td>
-                    <td><img class="imagen-producto" src="<%= datos[i].url %>"></td>
-                    <td>
-                        <%= datos[i].destacado %>
+                        <%= facturas[i].fecha %>
                     </td>
                     <td>
-                        <% if (datos[i].promedio > 0) {%>
-                            <%= datos[i].promedio %>
-                        <% } else{%>
-                            <p>Sin Calificar</p>
-                        <% }%>
+                        <%= facturas[i].email %>
+                    </td>
+                    <td>
+                        <%= facturas[i].ip_cliente %>
                     </td>
                 </tr>
                 <% } %>
-                    <% } else { %>
-                        <tr>
-                            <th>
-                                <p>No hay productos en el sistema</p>
-                            </th>
-                        </tr>
-                        <% } %>
+                    <% } %>
+                        <% } else { %> 
+                            <tr>
+                                <th>No hay compras en el sistema</th>
                             </tr>
+                            <% } %>
+                                </tr>
             </table>
+        </div>
     </div>
-</div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
